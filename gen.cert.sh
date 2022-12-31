@@ -1,9 +1,17 @@
 #!/usr/bin/env bash
+###
+ # @Author       : Zyx
+ # @Date         : 2022-12-31 11:23:41
+ # @LastEditors  : Zyx
+ # @LastEditTime : 2022-12-31 11:24:50
+ # @FilePath     : \local_ssl\gen.cert.sh
+ # @IDE          : VS Code
+### 
 
 if [ -z "$1" ]
 then
     echo
-    echo 'Issue a wildcard SSL certificate with Fishdrowned ROOT CA'
+    echo 'Issue a wildcard SSL certificate with Esing ROOT CA'
     echo
     echo 'Usage: ./gen.cert.sh <domain> [<domain2>] [<domain3>] [<domain4>] ...'
     echo '    <domain>          The domain name of your site, like "example.dev",'
@@ -39,7 +47,7 @@ openssl req -new -out "${DIR}/$1.csr.pem" \
     -reqexts SAN \
     -config <(cat ca.cnf \
         <(printf "[SAN]\nsubjectAltName=${SAN}")) \
-    -subj "/C=CN/ST=Guangdong/L=Guangzhou/O=Fishdrowned/OU=$1/CN=*.$1"
+    -subj "/C=CN/ST=Guangdong/L=Guangzhou/O=Esing/OU=$1/CN=*.$1"
 
 # Issue certificate
 # openssl ca -batch -config ./ca.cnf -notext -in "${DIR}/$1.csr.pem" -out "${DIR}/$1.cert.pem"
